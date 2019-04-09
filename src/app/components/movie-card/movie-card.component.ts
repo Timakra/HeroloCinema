@@ -31,7 +31,9 @@ export class MovieCardComponent implements OnInit {
     //Sets max width and heifht of the dialog panel
     dialogConfig.maxHeight = '90vh';
     dialogConfig.maxWidth = '90vw';
-
+    // class for the close button
+    dialogConfig.panelClass = 'close-button-dialog';
+    
     this.dialog.open(MovieDetailsModalComponent,dialogConfig);
   }
 

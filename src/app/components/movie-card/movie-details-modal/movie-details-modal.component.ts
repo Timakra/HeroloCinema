@@ -54,6 +54,11 @@ export class MovieDetailsModalComponent implements OnInit {
     })
   }
 
+  //closes the dialog
+  closeDialog(){
+    this.dialogRef.close()
+  }
+
 
 
 }
