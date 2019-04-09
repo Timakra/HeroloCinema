@@ -65,6 +65,14 @@
     </mat-chip-list>
     </mat-form-field>
   <!-- Production companys End-->
+
+  <!-- Poster for new movies -->
+  <label *ngIf="data.new"> Upload a Poster 
+    <input type="file" (change)="addPoster($event)" name="" id="" >
+  </label>
+  <img class="poster-preview" [src]="newPoster" alt="" *ngIf="newPoster">
+  <!-- Poster for new movies -->
+
 </form>
 <!-- Form End -->
 

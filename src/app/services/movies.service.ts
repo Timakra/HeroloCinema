@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap , map, filter } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material';
-import { DeleteMovieDialogComponent } from '../components/delete-movie-dialog/delete-movie-dialog.component';
+import { DeleteMovieDialogComponent } from '../components/movie-card/delete-movie-dialog/delete-movie-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -95,10 +95,10 @@ export class MoviesService {
   }
 
   //checks if title allready exist
-  checkTitle(title){
+  checkTitle(title,id){
     let exist = false;
     this.moviesSubject.value.map(movie=>{
-      if(movie.title.toLowerCase() === title.toLowerCase()){
+      if(id != movie.id && movie.title.toLowerCase() === title.toLowerCase()){
         exist = true;
         return;
       }

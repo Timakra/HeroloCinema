@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
       title: "",
       overview: "",
       genres:[],
+      new:true,
       release_date: Date.now(),
       additionalData : {production_companies:[]}
 

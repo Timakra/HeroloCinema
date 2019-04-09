@@ -14,6 +14,10 @@ export class MovieEditModalComponent implements OnInit {
   @ViewChild('picker') picker : MatDatepicker<any>;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   movieForm : FormGroup;
+  
+  // data image for new posters
+  newPoster : any;
+
   constructor(
     public dialogRef: MatDialogRef<MovieEditModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -57,22 +61,23 @@ export class MovieEditModalComponent implements OnInit {
     if(this.movieForm.valid){
       let title = this.movieForm.controls['title'].value;
       //checks if title already exist
-      if(this.moviesService.checkTitle(title)){
+      if(this.moviesService.checkTitle(title,this.data.id)){
         this.movieForm.controls['title'].setErrors({titleExist:true})
         return;
       }
       //picks data from the valid form
-      this.data.title = title
-      this.data.genres = this.movieForm.controls['genre'].value.split(' ')
-      this.data.release_date = this.movieForm.controls['release_date'].value
-      this.data.overview = this.movieForm.controls['overview'].value
+      this.data.posterUrl = this.newPoster || 'assets/poster-placeholder.jpg';
+      this.data.title = title;
+      this.data.genres = this.movieForm.controls['genre'].value.split(' ');
+      this.data.release_date = this.movieForm.controls['release_date'].value;
+      this.data.overview = this.movieForm.controls['overview'].value;
       this.dialogRef.close(this.data);
     }
   }
 
   //Opens date picker
   openPicker(){
-    this.picker.open()
+    this.picker.open();
   }
 
   //Closes dialog
@@ -92,8 +97,21 @@ export class MovieEditModalComponent implements OnInit {
     if(this.movieForm.controls['company'].valid){
       this.data.additionalData.production_companies.push({name:e.value});
       //resets input field
-      this.movieForm.controls['company'].setValue('')
+      this.movieForm.controls['company'].setValue('');;
     }
   }
 
+  addPoster(e){
+    console.log(e.target)
+    let files = e.target.files
+    // Checks filereader support and file exists
+    if (FileReader && files && files.length) {
+      var fr = new FileReader();
+      fr.onload = ()=>{
+        //save image url to newPoster
+        this.newPoster = fr.result;
+      }
+      fr.readAsDataURL(files[0]);
+    }
+  }
 }

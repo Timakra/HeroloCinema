@@ -19,6 +19,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit() {
     if(!this.movie.posterUrl){
+      //in case a movie doesnt have a poster
       this.movie.posterUrl = 'assets/poster-placeholder.jpg'
     }
   }
