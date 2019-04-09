@@ -1,5 +1,14 @@
+.add-movie{
+    text-align: center;
+    background: #7b4591;
+    object-position: center center;
+    img{
+        width:100%;
+    }
+}
 .app-content{
     margin-top: 50px;
+    position: relative;
 }
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { 

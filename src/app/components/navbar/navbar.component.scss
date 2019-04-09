@@ -20,6 +20,16 @@
             width: 50%;
         }
     }
+    .add-movie{
+        position: absolute;
+        padding: 0;
+        right: calc(11vw + 30px);
+        top: 15px;
+        width: 40px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
     .nav-buttons,.colapse-menu{
         position: absolute;
         background: #f1f1f1;;
@@ -67,6 +77,10 @@
         .colapse-menu{
             display: none;
         }
+        .add-movie{
+            right: calc(7vw + 312px);
+            top: 17px;
+        }
         .nav-buttons{
             display: inline;
             .nav-button{
@@ -82,6 +96,9 @@
             img{
             }
         }
+        .add-movie{
+            right: calc(7vw + 322px);
+        }
         .nav-buttons{
             .nav-button{
             }
@@ -95,6 +112,9 @@
         .logo{
             img{
             }
+        }
+        .add-movie{
+            right: calc(7vw + 332px);
         }
         .nav-buttons{
             .nav-button{

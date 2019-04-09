@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDatepicker } from '@angular/material'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {DateValidator} from './../../../date.validator'
+import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
   selector: 'app-movie-edit-modal',
@@ -17,6 +18,7 @@ export class MovieEditModalComponent implements OnInit {
     public dialogRef: MatDialogRef<MovieEditModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb : FormBuilder,
+    private moviesService : MoviesService
   ) {}
 
   ngOnInit() {
@@ -53,8 +55,14 @@ export class MovieEditModalComponent implements OnInit {
   //Saves movie 
   save(){
     if(this.movieForm.valid){
+      let title = this.movieForm.controls['title'].value;
+      //checks if title already exist
+      if(this.moviesService.checkTitle(title)){
+        this.movieForm.controls['title'].setErrors({titleExist:true})
+        return;
+      }
       //picks data from the valid form
-      this.data.title = this.movieForm.controls['title'].value
+      this.data.title = title
       this.data.genres = this.movieForm.controls['genre'].value.split(' ')
       this.data.release_date = this.movieForm.controls['release_date'].value
       this.data.overview = this.movieForm.controls['overview'].value

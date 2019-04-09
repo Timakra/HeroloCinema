@@ -5,6 +5,7 @@
     <mat-error *ngIf="!movieForm.controls['title'].valid && movieForm.controls['title'].touched">
       <span *ngIf="movieForm.controls['title'].hasError('required')">This field is required</span>
       <span *ngIf="movieForm.controls['title'].hasError('pattern')">Only alphabetic charcters and number allowed</span>
+      <span *ngIf="movieForm.controls['title'].hasError('titleExist')">Title already exist</span>
     </mat-error>
   </mat-form-field>
   <!-- Title field End -->

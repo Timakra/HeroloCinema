@@ -12,14 +12,15 @@ export class MovieCardComponent implements OnInit {
   // Movie inputed to component from parent
   @Input('movie') movie;
   // Movies poster image link
-  posterUrl : string;
   constructor(
     private moviesService : MoviesService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    this.posterUrl = `https://image.tmdb.org/t/p/w500${this.movie.poster_path}`
+    if(!this.movie.posterUrl){
+      this.movie.posterUrl = 'assets/poster-placeholder.jpg'
+    }
   }
 
   //Opens a movie detail pop up

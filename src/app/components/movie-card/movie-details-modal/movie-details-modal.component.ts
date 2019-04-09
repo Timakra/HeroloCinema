@@ -20,11 +20,21 @@ export class MovieDetailsModalComponent implements OnInit {
   ngOnInit() {
     // Fetch a bit more data about the movie ( like production companies ) if didnt fetch yet
     if(!this.movie.additionalData){
-      this.moviesService.getMoreDetails(this.movie.id).subscribe((data)=>{
-        this.movie.additionalData = data;
-      })
+      this.moviesService.getMoreDetails(this.movie.id)
     }
   }
+
+  deleteMovie(){
+    // opens a confirm dialog 
+    this.moviesService.deleteMovie(this.movie.id).beforeClose().subscribe((deleted)=>{
+      //closes this dialog if movie deleted
+      if(deleted){
+        this.dialogRef.close()
+      }
+    })
+  }
+
+  // Opens movie edit dialog 
   openEdit(){
     const dialogConfig = new MatDialogConfig;
     dialogConfig.autoFocus = true;

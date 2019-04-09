@@ -1,6 +1,6 @@
 <div (click)="openMovieDetail()" class="movie-card fluid-container" *ngIf="movie">
   <div class="row">
-    <img class="poster col" [src]="posterUrl" alt="" *ngIf="posterUrl">
+    <img class="poster col" [src]="movie.posterUrl" alt="" *ngIf="movie.posterUrl">
     <div class="details">
       <!-- Movie title -->
       <h3>
