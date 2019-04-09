@@ -1,0 +1,27 @@
+<div (click)="openMovieDetail()" class="movie-card fluid-container" *ngIf="movie">
+  <div class="row">
+    <img class="poster col" [src]="posterUrl" alt="" *ngIf="posterUrl">
+    <div class="details">
+      <!-- Movie title -->
+      <h3>
+        {{movie.title | titlePipe }}
+      </h3>
+      <!-- Movie title end -->
+
+      <!-- Release date - year -->
+      <h5>
+        {{movie.release_date | date:"yyyy"}}
+      </h5>
+      <!-- Release date - year end -->
+      <br>
+
+      <!-- Genres -->
+      <h5>
+        <span *ngFor="let genre of movie.genres;let last = last">
+          {{ genre }} <span *ngIf="!last">,</span>
+        </span>
+      </h5>
+      <!-- Genres End -->
+    </div>
+  </div>
+</div>

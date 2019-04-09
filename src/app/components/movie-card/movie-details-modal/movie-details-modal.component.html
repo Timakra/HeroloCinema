@@ -1,0 +1,35 @@
+<div class="container details">
+    <!-- Movie title -->
+    <h3 class="title">
+      {{movie.title | titlePipe }}
+    </h3>
+    <!-- Movie title end -->
+
+    <!-- Genres -->
+    <h5>
+      <span *ngFor="let genre of movie.genres;let last = last">
+        {{ genre }} <span *ngIf="!last">,</span>
+      </span>
+    </h5>
+    <!-- Genres End -->
+
+    <!-- Release date - year -->
+    <h5>
+      {{movie.release_date | date}}
+    </h5>
+    <!-- Release date - year end -->
+
+    <!-- overview -->
+    <p>
+      {{movie.overview}}
+    </p>
+
+    <!-- Production companies -->
+    <div *ngIf="movie.additionalData && movie.additionalData.production_companies.length">
+      <h5>Production Companies : </h5>
+      <ul>
+        <li *ngFor="let company of movie.additionalData.production_companies">{{company.name}}</li>
+      </ul>
+    </div>
+    <button (click)="openEdit()" class="edit-button" mat-raised-button>Edit <mat-icon>edit</mat-icon></button>
+</div>

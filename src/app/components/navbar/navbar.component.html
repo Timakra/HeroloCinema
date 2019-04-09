@@ -1,0 +1,41 @@
+<!-- Navbar start -->
+<div class="navbar">
+
+  <!-- logo start -->
+  <div class="logo">
+    <img src="assets/heroloLogo.jpg" alt="">
+  </div>
+  <!-- logo end -->
+
+  <!-- Navigation button start -->
+  <!-- Mobile Colapassed navigation start -->
+  <button class="colapse-menu" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <span>Series</span>
+    </button>
+    <button mat-menu-item>
+      <span>Movies</span>
+    </button>
+    <button mat-menu-item>
+      <span>Upcoming</span>
+    </button>
+  </mat-menu>
+  <!-- Mobile Colapassed navigation end -->
+  <ul class="nav-buttons">
+    <li class="nav-button">
+        <button mat-raised-button color="primary">Series</button>
+    </li>
+    <li class="nav-button">
+      <button mat-raised-button color="primary">Movies</button>
+    </li>
+    <li class="nav-button">
+      <button mat-stroked-button color="accent">Upcoming</button>
+    </li>
+  </ul>
+  <!-- Navigation button end -->
+
+</div>
+<!-- Navbar end -->

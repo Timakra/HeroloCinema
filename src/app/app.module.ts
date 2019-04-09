@@ -3,15 +3,37 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { titlePipe } from './title.pipe'
+//material
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialComponentsModule } from './material.components';
+import { MovieCardComponent } from './components/movie-card/movie-card.component'
+import { HttpClientModule } from '@angular/common/http';
+import { MovieDetailsModalComponent } from './components/movie-card/movie-details-modal/movie-details-modal.component';
+import { MovieEditModalComponent } from './components/movie-card/movie-edit-modal/movie-edit-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    MovieCardComponent,
+    MovieDetailsModalComponent,
+    MovieEditModalComponent,
+    titlePipe,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialComponentsModule,
+    MatNativeDateModule
   ],
+  entryComponents:[MovieDetailsModalComponent,MovieEditModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
