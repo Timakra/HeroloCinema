@@ -17,6 +17,7 @@ export class MovieEditModalComponent implements OnInit {
   
   // data image for new posters
   newPoster : any;
+  production_companies: any[];
 
   constructor(
     public dialogRef: MatDialogRef<MovieEditModalComponent>,
@@ -26,18 +27,20 @@ export class MovieEditModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //Clones production company array
+    this.production_companies = this.data.additionalData.production_companies.slice(0);
     // Sets validator for all fields
     this.movieForm = this.fb.group({
       title:[this.data.title, Validators.compose([
         Validators.minLength(1),
-        //pattern to check that every charcter is alphanumeric or space and not just space
-        Validators.pattern('[ ][a-zA-Z0-9][a-zA-Z0-9 ]{0,}|[a-zA-Z0-9][a-zA-Z0-9 ]{0,}'),
+        //None empty string patter
+        Validators.pattern(`(.*[^\\s]+.*)`),
         Validators.required
       ])],
       genre:[this.data.genres.join(' '), Validators.compose([
         Validators.minLength(1),
-        //pattern to check that every charcter is alphanumeric or space and not just space
-        Validators.pattern('[ ][a-zA-Z0-9][a-zA-Z0-9 ]{0,}|[a-zA-Z0-9][a-zA-Z0-9 ]{0,}'),
+        //None empty string patter
+        Validators.pattern(`(.*[^\\s]+.*)`),
         Validators.required
       ])],
       overview:[this.data.overview, Validators.compose([
@@ -65,9 +68,12 @@ export class MovieEditModalComponent implements OnInit {
         this.movieForm.controls['title'].setErrors({titleExist:true})
         return;
       }
+
       //picks data from the valid form
-      this.data.posterUrl = this.newPoster || 'assets/poster-placeholder.jpg';
-      this.data.title = title;
+      this.data.posterUrl =  this.newPoster || this.data.posterUrl || 'assets/poster-placeholder.jpg';
+      //Trims whitespace from title
+      this.data.title = this.movieForm.controls['title'].value.trim();
+      this.data.additionalData.production_companies = this.production_companies
       this.data.genres = this.movieForm.controls['genre'].value.split(' ');
       this.data.release_date = this.movieForm.controls['release_date'].value;
       this.data.overview = this.movieForm.controls['overview'].value;
@@ -87,7 +93,7 @@ export class MovieEditModalComponent implements OnInit {
 
   //removes a production company
   removeCompany(index){
-    this.data.additionalData.production_companies.splice(index,1);
+    this.production_companies.splice(index,1);
   }
   
   
@@ -95,14 +101,13 @@ export class MovieEditModalComponent implements OnInit {
   addCompany(e){
     this.movieForm.controls['company'].updateValueAndValidity();
     if(this.movieForm.controls['company'].valid){
-      this.data.additionalData.production_companies.push({name:e.value});
+      this.production_companies.push({name:e.value});
       //resets input field
       this.movieForm.controls['company'].setValue('');;
     }
   }
 
   addPoster(e){
-    console.log(e.target)
     let files = e.target.files
     // Checks filereader support and file exists
     if (FileReader && files && files.length) {
@@ -114,4 +119,5 @@ export class MovieEditModalComponent implements OnInit {
       fr.readAsDataURL(files[0]);
     }
   }
+
 }

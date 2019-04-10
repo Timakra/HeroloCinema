@@ -4,7 +4,7 @@
     <input matInput formControlName="title" type="text" placeholder="Title">
     <mat-error *ngIf="!movieForm.controls['title'].valid && movieForm.controls['title'].touched">
       <span *ngIf="movieForm.controls['title'].hasError('required')">This field is required</span>
-      <span *ngIf="movieForm.controls['title'].hasError('pattern')">Only alphabetic charcters and number allowed</span>
+      <span *ngIf="movieForm.controls['title'].hasError('pattern')">Title cannot be empty</span>
       <span *ngIf="movieForm.controls['title'].hasError('titleExist')">Title already exist</span>
     </mat-error>
   </mat-form-field>
@@ -15,7 +15,7 @@
     <input matInput formControlName="genre" type="text" placeholder="Genres">
     <mat-error *ngIf="!movieForm.controls['genre'].valid && movieForm.controls['genre'].touched">
       <span *ngIf="movieForm.controls['genre'].hasError('required')">This field is required</span>
-      <span *ngIf="movieForm.controls['genre'].hasError('pattern')">Only alphabetic charcters and number allowed</span>
+      <span *ngIf="movieForm.controls['genre'].hasError('pattern')">Genre cannot be empty</span>
     </mat-error>
   </mat-form-field>
   <!-- Genre field End -->
@@ -46,7 +46,7 @@
     <mat-form-field class="full-width">
       <mat-chip-list #companiesList>
         <mat-chip
-        *ngFor="let company of data.additionalData.production_companies ; let i = index"
+        *ngFor="let company of production_companies ; let i = index"
         [removable]="true"
         (removed)="removeCompany(i)">
         {{company.name}}
@@ -67,7 +67,7 @@
   <!-- Production companys End-->
 
   <!-- Poster for new movies -->
-  <label *ngIf="data.new"> Upload a Poster 
+  <label *ngIf="data.new && !data.posterUrl"> Upload a Poster 
     <input type="file" (change)="addPoster($event)" name="" id="" >
   </label>
   <img class="poster-preview" [src]="newPoster" alt="" *ngIf="newPoster">

@@ -21,6 +21,7 @@
         }
     }
     .add-movie{
+        filter: drop-shadow(2px 2px 3px black);
         position: absolute;
         padding: 0;
         right: calc(11vw + 30px);
@@ -28,6 +29,7 @@
         width: 40px;
         &:hover{
             cursor: pointer;
+            filter: drop-shadow(2px 2px 4px black);
         }
     }
     .nav-buttons,.colapse-menu{

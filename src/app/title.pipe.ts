@@ -22,7 +22,9 @@ export class titlePipe implements PipeTransform {
     .split(' ')
     // capitalizes first letter of each word
     .map(word=>{
-        return word[0].toUpperCase() + word.substring(1)
+        if(word[0]){
+            return word[0].toUpperCase() + word.substring(1)
+        }
     })
     // joins tha list back togther into a string
     .join(' ')

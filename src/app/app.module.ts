@@ -15,6 +15,7 @@ import { MovieEditModalComponent } from './components/movie-card/movie-edit-moda
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material';
 import { DeleteMovieDialogComponent } from './components/movie-card/delete-movie-dialog/delete-movie-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,8 +34,9 @@ import { DeleteMovieDialogComponent } from './components/movie-card/delete-movie
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialComponentsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
+  
   entryComponents:[MovieDetailsModalComponent,MovieEditModalComponent,DeleteMovieDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
