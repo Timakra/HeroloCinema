@@ -12,7 +12,7 @@ export class MovieDetailsModalComponent implements OnInit {
   additionalData;
   constructor(
     public dialogRef: MatDialogRef<MovieDetailsModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public movie: any,
+    @Inject(MAT_DIALOG_DATA) public movie: Movie,
     public matDialog : MatDialog,
     private moviesService : MoviesService
   ) { }

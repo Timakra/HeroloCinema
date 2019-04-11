@@ -16,12 +16,12 @@ export class MovieEditModalComponent implements OnInit {
   movieForm : FormGroup;
   
   // data image for new posters
-  newPoster : any;
-  production_companies: any[];
+  newPoster : string | ArrayBuffer;
+  production_companies: ProductionCompanies[];
 
   constructor(
     public dialogRef: MatDialogRef<MovieEditModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: Movie,
     private fb : FormBuilder,
     private moviesService : MoviesService
   ) {}
@@ -70,6 +70,7 @@ export class MovieEditModalComponent implements OnInit {
       }
 
       //picks data from the valid form
+                                            //if new poster not added stays with old one and if this one doenst exist takes a default place holder
       this.data.posterUrl =  this.newPoster || this.data.posterUrl || 'assets/poster-placeholder.jpg';
       //Trims whitespace from title
       this.data.title = this.movieForm.controls['title'].value.trim();

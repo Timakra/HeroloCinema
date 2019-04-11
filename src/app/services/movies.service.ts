@@ -42,7 +42,7 @@ export class MoviesService {
   fetchMovies(){
     return this.http.get(`https://api.themoviedb.org/4/list/5376`,{headers:{Authorization:`Bearer ${this.apiToken}`}}).pipe(
       // Extacts query result from object
-      map((moviesQuery : any)=>{
+      map((moviesQuery : {results:Movie[]})=>{
         //add random runtime to each movie  (api doesn't give runtime) and translates genre id to a genre string
         return moviesQuery.results.map((movie)=>{
           // random runtime between 120 and 180
@@ -52,9 +52,9 @@ export class MoviesService {
           movie.posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
           return movie;
         })
+        // Filter adult movies (just in case)
+        .filter(a=>!a.adult)
       }),
-      // Filter adult movies (just in case)
-      filter(a=>!a.adult)
     )
   }
   // opens a confirm dialog to delete movie deletes movie
