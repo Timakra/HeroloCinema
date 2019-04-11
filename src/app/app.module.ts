@@ -15,6 +15,9 @@ import { MovieEditModalComponent } from './components/movie-card/movie-edit-moda
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material';
 import { DeleteMovieDialogComponent } from './components/movie-card/delete-movie-dialog/delete-movie-dialog.component';
+// NgRx
+import { StoreModule } from '@ngrx/store';
+import { movieReducer } from './reducers/movies.reducer';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { DeleteMovieDialogComponent } from './components/movie-card/delete-movie
   imports: [
     BrowserModule,
     HttpClientModule,
+    StoreModule.forRoot({
+      movies: movieReducer
+    }),
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,

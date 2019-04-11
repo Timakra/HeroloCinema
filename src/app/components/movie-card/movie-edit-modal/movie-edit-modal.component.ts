@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {DateValidator} from './../../../date.validator'
 import { MoviesService } from 'src/app/services/movies.service';
-
+import {Movie,ProductionCompanies,MovieAdditionalInfo} from './../../../models/movies.model'
 @Component({
   selector: 'app-movie-edit-modal',
   templateUrl: './movie-edit-modal.component.html',

@@ -2,6 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogConfig } from '@angular/material';
 import { MoviesService } from 'src/app/services/movies.service';
 import { MovieEditModalComponent } from '../movie-edit-modal/movie-edit-modal.component';
+import {Movie} from './../../../models/movies.model'
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
+
 
 @Component({
   selector: 'app-movie-details-modal',
@@ -14,7 +18,8 @@ export class MovieDetailsModalComponent implements OnInit {
     public dialogRef: MatDialogRef<MovieDetailsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public movie: Movie,
     public matDialog : MatDialog,
-    private moviesService : MoviesService
+    private moviesService : MoviesService,
+    private store : Store<AppState>
   ) { }
 
   ngOnInit() {

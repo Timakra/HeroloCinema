@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MoviesService } from './services/movies.service';
+import { Movie } from './models/movies.model';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,12 @@ import { MoviesService } from './services/movies.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  movies = [1,2,3,4,5]
+  movies : Movie[] = []
   constructor(
     private moviesService : MoviesService
   ){
     // Fetch movies from api
+    this.moviesService.fetchMovies();
     this.moviesService.getMovies().subscribe((movies)=>{
       this.movies = movies
     })
